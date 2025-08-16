@@ -58,20 +58,14 @@ def transcribe_video(video_path, model_size="medium"):
 
 # ---------------- Save TXT + SRT ----------------
 def save_transcriptions(result, output_base="captions"):
-    """Save transcriptions to .txt and .srt"""
+    """Save transcriptions to .txt only"""
     txt_path = Path(f"{output_base}.txt")
-    srt_path = Path(f"{output_base}.srt")
 
     # Plain text
     with open(txt_path, "w", encoding="utf-8") as f:
         f.write(result["text"])
 
-    # Subtitles using whisper.get_writer
-    srt_writer = whisper.get_writer("srt", ".")
-    srt_writer(result, str(srt_path))
-
-    return str(txt_path), str(srt_path)
-
+    return str(txt_path)
 # ---------------- Worker Loop ----------------
 async def worker():
     """Background worker that processes queued jobs"""
