@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+yt-dlp
+openai-whisper
+python-dotenv
+supabase
