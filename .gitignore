@@ -51,3 +51,20 @@ temp/
 # Cache
 .cache/
 .next/cache/
+
+_pycache_/
+# Transcription service runtime data (DB, uploads, transcripts)
+data/
+__pycache__/
+.pytest_cache/
+
+# Media files (GitHub rejects files > 100 MiB; uploads live in data/ anyway)
+*.mp4
+*.mp3
+*.wav
+*.mkv
+*.m4a
+*.webm
+*.mov
+videos/
+outputs/

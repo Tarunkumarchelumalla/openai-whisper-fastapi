@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caption Extractor</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M3 10h2v4H3zm4-3h2v10H7zm4-4h2v18h-2zm4 5h2v8h-2zm4 3h2v2h-2z"/></svg>
+    </span>
+    <div>
+      <h1>Caption Extractor</h1>
+      <p class="sub">Upload audio or video, get timed transcripts. Queue-backed, retry-safe.</p>
+    </div>
+  </div>
+</header>
+
+<main id="tab-app">
+  <section class="stats" id="stats" aria-live="polite"></section>
+
+  <div class="grid">
+    <section class="card upload">
+      <h2>Upload</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="file" multiple accept=".wav,.mp3,.mp4,audio/wav,audio/mpeg,video/mp4" hidden>
+        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path fill="currentColor" d="M11 16V7.8l-2.6 2.6L7 9l5-5 5 5-1.4 1.4L13 7.8V16zm-6 4q-.8 0-1.4-.6T3 18v-3h2v3h14v-3h2v3q0 .8-.6 1.4T19 20z"/></svg>
+        <strong>Drop files here or click to browse</strong>
+        <span class="muted" id="limits">WAV, MP3, MP4</span>
+      </label>
+
+      <div class="opts">
+        <label>Model
+          <select id="model"></select>
+        </label>
+        <label>Language
+          <input id="language" placeholder="auto-detect" maxlength="8">
+        </label>
+      </div>
+
+      <ul class="queue" id="pending"></ul>
+      <div class="row">
+        <button class="btn primary" id="uploadBtn" disabled>Upload &amp; transcribe</button>
+        <button class="btn ghost" id="clearBtn" hidden>Clear</button>
+      </div>
+    </section>
+
+    <section class="card jobs">
+      <div class="jobs-head">
+        <h2>Jobs</h2>
+        <div class="filters" id="filters">
+          <button data-f="" class="chip on">All</button>
+          <button data-f="processing" class="chip">Active</button>
+          <button data-f="completed" class="chip">Done</button>
+          <button data-f="failed" class="chip">Failed</button>
+        </div>
+      </div>
+      <div id="jobList" class="job-list"><p class="empty">No jobs yet. Upload a file to start.</p></div>
+    </section>
+  </div>
+</main>
+
+
+<dialog id="detail">
+  <div class="detail-head">
+    <div>
+      <h2 id="dTitle"></h2>
+      <p class="muted" id="dMeta"></p>
+    </div>
+    <button class="icon-btn" id="dClose" aria-label="Close">✕</button>
+  </div>
+  <div id="dPlayer" class="player"></div>
+  <div class="row wrap" id="dActions"></div>
+  <div class="segments" id="dSegments"></div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,6 +1,11 @@
 fastapi
 uvicorn
-yt-dlp
-openai-whisper
+python-multipart
 python-dotenv
+openai-whisper
+pytest
+httpx
+
+# legacy/instagram_main.py only
+yt-dlp
 supabase
